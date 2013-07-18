@@ -1,0 +1,16 @@
+class boxOfCereal extends item{
+  
+
+  public String use(room thisRoom){
+    String useMessage;
+    if(thisRoom.getRoomName().equals("kitchen")){
+      useMessage=("You grab the one clean bowl and spoon and pour yourself a bowl of 'Ohn-o's, Breakfast of the Foreboding!'. As the little scream-shaped bits fall into the bowl, you notice something shiny fall into the bowl. It makes a clinking sound.");
+      
+    }
+    else{
+      useMessage=("Don't you think that you should GO to the kitchen for that? You wouldn't want to attract mice in your living room, and it would probably help with your lack-of-bowl situation.");
+    }
+  return useMessage;
+  }
+  
+}

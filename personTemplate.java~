@@ -1,0 +1,21 @@
+class personTemplate{
+  
+  public String personName;
+  public int hitPoints;
+
+  public void personTemplate(){
+    int hitPoints=100;
+  }
+  public int checkHealth(){
+    return(hitPoints);
+  }
+  public String getName(){
+    return(personName);
+  }
+  public void setHP(int newHP){
+    hitPoints=newHP;
+  }
+  public void setName(String name){
+    personName=name;
+  }
+}

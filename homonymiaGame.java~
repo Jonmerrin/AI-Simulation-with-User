@@ -1,0 +1,329 @@
+import java.util.*;
+
+class homonymiaGame{
+
+  private int xLocation;
+  private int yLocation;
+  public boolean gameOver=false;
+  playerHomonymia player=new playerHomonymia();
+  padOfPaper pad =new padOfPaper();
+  boxOfCereal cereal = new boxOfCereal();
+  keyhome01N keyhome01N=new keyhome01N();
+  room[][] home=new room[3][3];
+  room[][] board=new room[22][22];
+  room currentRoom=new room();
+  private LinkedList<item> bag;
+  
+  public homonymiaGame(){
+    xLocation=0;
+    yLocation=2;
+    bag=new LinkedList<item>();
+    
+    //MAP SETUP
+    
+    //Bedroom. Starting Location.
+    home[0][2]=new room();
+    home[0][2].setNorth(true);
+    home[0][2].setNMessage("You leave your bedroom and enter the living room of your little 3 room house.");
+
+    home[0][2].setRoomName("bedroom");
+    home[0][2].setDesc("Sunlight is pouring in through the windows, and your alarm is going off. The door is north of you.");
+    home[0][2].setDetail("It's your room. You've lived here for a while. There is a door north of you.");
+            //Pad of paper item
+    pad.setName("pad of paper");
+    pad.setUses(37);
+    pad.setDesc("It's a pad of paper "+pad.checkStats()+" with empty pages.");
+           //Cereal Box
+    cereal.setName("box of cereal");
+    cereal.setDesc("It's a box of your favorite cereal brand cereal. It has food in it and everything.");
+    cereal.setUses(1);
+    cereal.setItemCreate(keyhome01N);
+    
+    //Front Door Key
+    keyhome01N.setName("front door key");
+    keyhome01N.setDesc("It's the key unlocks your front door. How it got in your cereal is a mystery, but it seems like an important thing to keep track of.");
+    keyhome01N.setPermanent(true);
+    
+    //Apartment Main
+    home[0][1]=new room();
+    home[0][1].setNorth(false);
+    home[0][1].setEast(true);
+    home[0][1].setSouth(true);    
+    home[0][1].setNError("Your front door is locked. USE the key.");
+    home[0][1].addItem(pad);
+    home[0][1].setRoomName("house");
+    home[0][1].setDesc("Your house is a mess. Seriously, you should do something about that some time.  Your kitchen is to the east, and the front door is north.");
+    home[0][1].setDetail("Your house is a mess. There are cushions all over the floor, a sweatshirt on the cushionless couch, and your bag is precariously perched on a chair.  To the east you can see your kitchen, and up north there is your front door.");
+    //Kitchen
+    home[1][1]=new room();
+    home[1][1].setWest(true);
+    home[1][1].addItem(cereal);
+    home[1][1].setRoomName("kitchen");
+    home[1][1].setDesc("You enter the kitchen. It's mostly white, some dishes in the sink.  You notice a cereal box in the cubbord.");
+    home[1][1].setDetail("Your kitchen is surprisingly clean compared to the rest of your house. There is cereal in the cubbord and milk in the fridge. There's even a clean bowl and spoon. Your stomach grumbles for breakfast.");
+    //Front Porch
+    home[0][0]=new room();
+    home[0][0].setSouth(true);
+    home[0][0].setRoomName("porch");
+    home[0][0].setDesc("The bright light hits your eyes, making you cringe to keep from squinting. You hate squinting. The fresh air hits you with startling contrast to your house's dingy atmosphere. Through the bright light you can see your mailbox and a dog playing with some squirrels. This is the first moment of many that will make up the rest of your day. The rest of your day lies to the north.");
+    home[0][0].setDetail("Your eyes have adjusted well to the light. You can now clearly see a pale blue sky with white clouds strewn across it. It really is a beautiful day. What you thought was a dog playing with squirrels actually turned out to be a bear toying with cats. The street sign shows that you live on the corner of RIAL and TUTO. ");
+    home[0][0].setNError("You should really lock the door behind you before you go. You don't want the thieves tracking dirt around your already messy apartment while you're gone, do you? That's what I thought.");
+    home[0][0].setSError("You JUST locked the door behind you. Seriously, your attention span is like that of a fruitfly among pomegranates. If you forgot something, you're going to have to UNLOCK the door to get back in.");
+    home[0][0].setNMessage("You take a deep breath and mentally prepare yourself for the coming day as you begin walking to the edge of your porch. As you begin your descent down the three steps that separate you from the rest of the world, a vortex opens before you. You try to grab hold to something, but there is nothing immediately around you. As the portal sucks you in, you curse yourself for not putting railings on your stairs. The vortex closes as the last of you is pulled in, and promptly locks itself behind you.");
+    //Starting place for Homonymia
+    board[5][5]=new room();
+    board[5][5].setRoomName("starting room");
+    board[5][5].setDesc("It's a small hut. It's kind of hard to see. Little bits of sunlight are seeping through. You think you see something moving in the corner of the room");
+    board[5][5].setDetail("It's a dusty hut. As your eyes adjust to the darkness, you realize that there is something moving. There's an old man in a rocking chair that seems less than surprised to see you.");
+    currentRoom=home[0][2];
+    currentRoom.getDesc();
+    
+  }
+  
+  
+  //METHODS
+//go
+  public void go(String dir){
+    if(currentRoom==home[0][0]&&dir.equals("north")&&currentRoom.getNorth()){
+      xLocation=5;
+      yLocation=5;
+      System.out.println(currentRoom.getNMessage());
+      currentRoom=board[5][5];
+      board[5][5].getDesc();
+    }
+    else if(currentRoom==home[xLocation][yLocation]){
+    if (dir.equals("north")){
+      if(currentRoom.getNorth()){
+        System.out.print(currentRoom.getNMessage());
+      yLocation=yLocation-1;
+      home[xLocation][yLocation].getDesc();
+      currentRoom=home[xLocation][yLocation];
+      }
+      else{
+        currentRoom.getErrorN();
+      }
+    }
+    else if(dir.equals("east")){
+      if(currentRoom.getEast()){
+        System.out.print(currentRoom.getEMessage());
+      xLocation=xLocation+1;
+      currentRoom=home[xLocation][yLocation];
+      currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorE();
+      }
+    }
+    else if(dir.equals("west")){
+      if(currentRoom.getWest()){
+        System.out.print(currentRoom.getWMessage());
+      xLocation=xLocation-1;
+      currentRoom=home[xLocation][yLocation];
+      currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorW();
+      }
+    }
+    else if(dir.equals("south")){
+      if(currentRoom.getSouth()){
+        System.out.print(currentRoom.getSMessage());
+      yLocation=yLocation+1;
+      currentRoom=home[xLocation][yLocation];
+      currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorS();
+      }
+    }
+    }
+    else if(currentRoom==board[xLocation][yLocation]){
+          if (dir.equals("north")){
+      if(currentRoom.getNorth()){
+        System.out.print(currentRoom.getNMessage());
+      yLocation=yLocation-2;
+      board[xLocation][yLocation].getDesc();
+      currentRoom=home[xLocation][yLocation];
+      }
+      else{
+        currentRoom.getErrorN();
+      }
+    }
+    else if(dir.equals("east")){
+      if(currentRoom.getEast()){
+        System.out.print(currentRoom.getEMessage());
+      xLocation=xLocation+2;
+      currentRoom=board[xLocation][yLocation];
+      currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorE();
+      }
+    }
+    else if(dir.equals("west")){
+      if(currentRoom.getWest()){
+        System.out.print(currentRoom.getWMessage());
+      xLocation=xLocation-2;
+      currentRoom=board[xLocation][yLocation];
+      currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorW();
+      }
+    }
+    else if(dir.equals("south")){
+      if(currentRoom.getSouth()){
+        System.out.print(currentRoom.getSMessage());
+      yLocation=yLocation+2;
+      currentRoom=board[xLocation][yLocation];
+      currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorS();
+      }
+    }
+    else if(dir.equals("northeast")||dir.equals("north east")){
+      if(currentRoom.getNortheast()==true){
+        System.out.print(currentRoom.getNEMessage());
+        xLocation=xLocation+1;
+        yLocation=yLocation-1;
+        currentRoom=board[xLocation][yLocation];
+        currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorNE();
+      }
+    }
+     else if(dir.equals("northwest")||dir.equals("north west")){
+      if(currentRoom.getNorthwest()==true){
+        System.out.print(currentRoom.getNWMessage());
+        xLocation=xLocation-1;
+        yLocation=yLocation-1;
+        currentRoom=board[xLocation][yLocation];
+        currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorNW();
+      }
+  }
+     else if(dir.equals("southeast")||dir.equals("south east")){
+      if(currentRoom.getSoutheast()==true){
+        System.out.print(currentRoom.getSEMessage());
+        xLocation=xLocation+1;
+        yLocation=yLocation+1;
+        currentRoom=board[xLocation][yLocation];
+        currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorSE();
+      }
+  }
+     else if(dir.equals("southwest")||dir.equals("south west")){
+      if(currentRoom.getSouthwest()==true){
+        System.out.print(currentRoom.getSWMessage());
+        xLocation=xLocation-1;
+        yLocation=yLocation+1;
+        currentRoom=board[xLocation][yLocation];
+        currentRoom.getDesc();
+      }
+      else{
+        currentRoom.getErrorSW();
+      }
+  }
+    }
+  }
+  
+  //rename
+  public void rename(String name){
+    player.setName(name);
+  }
+
+  
+  //Check your name
+  public void checkName(){
+    System.out.println("What? You forgot your name? It's "+player.getName()+".");
+  }
+  
+//pick up
+  public void pickUp(String itemName){
+    item hubla = currentRoom.checkItem(itemName);
+    if(hubla!=null){
+      currentRoom.removeItem(hubla);
+      bag.add(hubla);
+      System.out.println("You pick up the "+hubla.getName()+".");
+    }
+    else{
+      System.out.println("You can't pick that up, if it even exists.");
+    }
+  }
+  //Void or String? I tried both, but returning the string has text that comes up in quotations.
+  public void checkInventory(){
+    String invStat;
+    if(bag.size()>0){
+      invStat="You have: ";
+      for(int x=0; x<bag.size()-1; x++){
+        invStat=invStat+"a "+bag.get(x).getName()+" x"+bag.get(x).checkStats()+", ";
+        if(bag.size()>1){
+          invStat=invStat+"and ";
+        }
+      }
+      invStat=invStat+"a "+bag.get(bag.size()-1).getName()+" x"+bag.get(bag.size()-1).checkStats()+".";
+    }
+    else{
+      invStat="You aren't carrying any items.";
+    }
+    System.out.println(invStat); //Print or Return?!
+  }
+  
+  //look
+  public void look(String lookStuff){
+    String lookGetBack="You can't look at something that isn't there.";
+    item detail=currentRoom.checkItem(lookStuff);
+    
+    if(lookStuff==null||lookStuff.equals("around")||lookStuff.equals("room")||lookStuff.equals("around the room")){
+    currentRoom.getDetail();
+    return;
+    }
+    
+    else if(lookStuff!=null){
+      for(int x=0; x<bag.size(); x++){
+      if(lookStuff.equals(bag.get(x).getName())){
+      lookGetBack = bag.get(x).getDesc();
+      }
+    }
+    
+    if(detail!=null){
+      lookGetBack = currentRoom.checkItem(lookStuff).getDesc();
+    }
+    
+    else{
+      lookGetBack="You can't look at something that isn't there.";
+    }
+    }
+    System.out.println(lookGetBack);
+    }
+  
+  //use
+  public String use(String nameItem){
+    String useMessage=null;
+    
+      for(int x=0; x<bag.size(); x++){
+      if(nameItem.equals(bag.get(x).getName())){
+          useMessage=bag.get(x).use(currentRoom);
+      System.out.println(useMessage);
+      return useMessage;
+      }
+      
+      }
+      if(currentRoom.checkItem(nameItem)!=null)
+      {
+        useMessage = "Maybe you should PICK UP the "+nameItem+" first";
+        System.out.println(useMessage);
+        return useMessage;
+      }
+      useMessage = "You don't have that item";
+      System.out.println(useMessage);
+      return useMessage;
+  }
+  
+}

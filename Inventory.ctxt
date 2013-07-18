@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=myMover
+comment0.target=Inventory(Mover)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Inventory\n
+comment1.params=myRoom
+comment1.target=Inventory(Room)
+comment2.params=thingy
+comment2.target=void\ add(Item)
+comment3.params=majig
+comment3.target=void\ remove(Item)
+comment4.params=
+comment4.target=int\ size()
+comment5.params=x
+comment5.target=Item\ get(int)
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=\n\ Prints\ out\ inventory.\n
+numComments=7

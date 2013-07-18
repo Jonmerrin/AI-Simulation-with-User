@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MagicMachine()
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ MagicMachine\n
+comment1.params=aWorld
+comment1.target=Mover\ createMover(World)
+numComments=2

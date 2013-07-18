@@ -1,0 +1,53 @@
+import java.io.*;
+
+class Homonymia{
+  
+  public static void main(String[] args){
+    System.out.println("WELCOME TO HOMONYMIA");
+    System.out.println("You wake up in your room.");
+    homonymiaGame a=new homonymiaGame();
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    while(a.gameOver==false){
+      
+    String input = null;
+    try{
+      input=br.readLine();
+    }
+    catch(IOException ioe){
+      System.out.println("I don't know what you're saying. You lose. Automatically. Forever.");
+      System.exit(1);
+    }
+    input=input.toLowerCase();
+    
+    //input stuffs!
+    if(input.startsWith("look")){
+      if(input.length()>4){
+        input=input.substring(input.indexOf('k')+2);
+      }
+      else{
+        input = null;
+      }
+      a.look(input);
+    }
+    else if(input.startsWith("pick up")){
+      input=input.substring(8);
+      a.pickUp(input);
+    }
+    else if(input.startsWith("go")||input.startsWith("travel")||input.startsWith("trek")){
+      input=input.substring(input.indexOf(' ')+1);
+      a.go(input);
+    }
+    else if(input.startsWith("use")){
+      input=input.substring(input.indexOf(' ')+1);
+      a.use(input);
+    }
+
+      
+      
+    else{
+      System.out.println("I'm not getting it, friend.");
+    }
+    }
+}
+}

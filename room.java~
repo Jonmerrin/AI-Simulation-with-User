@@ -1,0 +1,254 @@
+import java.util.*;
+
+class room{
+  private String roomName;
+  private String roomDesc;
+  private String roomDetail;
+  private String goNMessage = "You go North. ";
+  private String goEMessage = "You go East. ";
+  private String goWMessage = "You go West. ";
+  private String goSMessage = "You go South. ";
+  private String goNEMessage = "You travel in the north-eastern direction. ";
+  private String goNWMessage = "You travel in the north-western direction. ";
+  private String goSEMessage = "You travel in the south-eastern direction. ";
+  private String goSWMessage = "You travel in the south-western direction. ";
+  private String errorN;
+  private String errorE;
+  private String errorW;
+  private String errorS;
+  private String errorNE;
+  private String errorNW;
+  private String errorSE;
+  private String errorSW;
+  private int xLocation;
+  private int yLocation;
+  private int currentLocation;
+  private boolean north;
+  private boolean south;
+  private boolean east;
+  private boolean west;
+  private boolean northeast=false;
+  private boolean northwest=false;
+  private boolean southeast=false;
+  private boolean southwest=false;
+  private LinkedList<item> items;
+  
+  public room(){
+    xLocation=0;
+    yLocation=0;
+    errorN="You can't go that way.";
+    errorE="You can't go that way.";
+    errorW="You can't go that way.";
+    errorS="You can't go that way.";
+    errorNE="There's no path going that way. Better stick to the road.";
+    errorNW="There's no path going that way. Better stick to the road.";
+    errorSE="There's no path going that way. Better stick to the road.";
+    errorSW="There's no path going that way. Better stick to the road.";
+    north=false;
+    south=false;
+    east=false;
+    west=false;
+    items = new LinkedList<item>();
+  }
+  
+  public void setNMessage(String goMessage){
+    goNMessage=goMessage;
+  }
+  
+  public void setEMessage(String goMessage){
+    goEMessage=goMessage;
+  }
+  
+  public void setWMessage(String goMessage){
+    goWMessage=goMessage;
+  }
+  
+  public void setSMessage(String goMessage){
+    goSMessage=goMessage;
+  }
+  
+  public void setRoomName(String name){
+    roomName=name;
+  }
+  public void setDesc(String desc){
+    roomDesc=desc;
+  }
+  
+  public void setDetail(String detail){
+    roomDetail=detail;
+  }
+  public void setNorth(boolean x){
+    north=x;
+  }
+  
+  public void setSouth(boolean x){
+    south=x;
+  }
+  
+  public void setEast(boolean x){
+    east=x;
+  }
+  
+  public void setWest(boolean x){
+    west=x;
+  }
+  
+  public void setNError(String errorMessage){
+    errorN=errorMessage;
+  }
+  
+  public void setSError(String errorMessage){
+    errorS=errorMessage;
+  }  
+  
+  public void setEError(String errorMessage){
+    errorE=errorMessage;
+  }  
+  
+  public void setWError(String errorMessage){
+    errorW=errorMessage;
+  }
+    
+  public String getRoomName(){
+    return(roomName);
+  }
+  
+  public void getDesc(){
+    System.out.println(roomDesc+" "+tabulateItems());
+  }
+  
+  public void getDetail(){
+    System.out.println(roomDetail+" "+tabulateItems());
+  }
+  
+  public String getNMessage(){
+    return goNMessage;
+  }
+  
+  public String getEMessage(){
+    return goEMessage;
+  }
+  
+  public String getWMessage(){
+    return goWMessage;
+  }
+  
+  public String getSMessage(){
+    return goSMessage;
+  }
+  
+  public String getNEMessage(){
+    return goNEMessage;
+  }
+  
+  public String getNWMessage(){
+    return goNWMessage;
+  }
+  
+  public String getSEMessage(){
+    return goSEMessage;
+  }
+  
+  public String getSWMessage(){
+    return goSWMessage;
+  }
+    
+  public void getErrorN(){
+    System.out.println(errorN);
+  }
+  
+  public void getErrorE(){
+    System.out.println(errorE);
+  }
+  
+  public void getErrorW(){
+    System.out.println(errorW);
+  }
+  
+  public void getErrorS(){
+    System.out.println(errorS);
+  }
+  
+  public void getErrorNE(){
+    System.out.println(errorNE);
+  }
+  
+  public void getErrorNW(){
+    System.out.println(errorNW);
+  }
+  
+  public void getErrorSE(){
+    System.out.println(errorSE);
+  }
+  
+  public void getErrorSW(){
+    System.out.println(errorSW);
+  }
+  
+  public boolean getNorth(){
+    return(north);
+  }
+  
+  public boolean getSouth(){
+    return(south);
+  }
+  
+  public boolean getEast(){
+    return(east);
+  }
+  
+  public boolean getWest(){
+    return(west);
+  }
+  
+  public boolean getNortheast(){
+    return(northeast);
+  }
+  
+  public boolean getNorthwest(){
+    return(northwest);
+  }
+  
+  public boolean getSoutheast(){
+    return(southeast);
+  }
+  
+  public boolean getSouthwest(){
+    return(southwest);
+  }
+  
+  public void addItem(item newItem){
+    items.add(newItem);
+  }
+  
+  public void removeItem(item newItem){
+    items.remove(newItem);
+  }
+  
+  public item checkItem(String itemName){
+    for(int x=0; x<items.size(); x++){
+      if(items.get(x).getName().equals(itemName)){
+        return items.get(x);
+    }
+  }
+    return null;
+  }
+  
+  
+  public String tabulateItems(){
+    String temp;
+    if(items.size()>0){
+      temp="The room contains: ";
+      for(int x=0; x<items.size()-1; x++){
+        temp=temp+items.get(x).getName()+", ";
+      }
+      if(items.size()>1)
+        temp=temp+"and ";
+      temp=temp+items.get(items.size()-1).getName()+".";
+    }
+    else{
+      temp="This room contains no items that you can take.";
+    }
+    return temp;
+  }
+}

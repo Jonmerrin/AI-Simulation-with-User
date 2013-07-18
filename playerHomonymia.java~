@@ -1,0 +1,16 @@
+class playerHomonymia{
+  
+  private String playerName;
+  private int hitPoints=100;
+  
+  public playerHomonymia(){
+  System.out.println("Oh yeah, your name is Jon. That is final.");
+  }
+
+  public void checkHealth(){
+    System.out.println(hitPoints);
+  }
+  public void checkName(){
+    System.out.println(playerName);
+  }
+}

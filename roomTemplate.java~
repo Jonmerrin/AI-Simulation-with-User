@@ -1,0 +1,7 @@
+class roomTemplate{
+  private String startingRoomName="Starting Room";
+  private int x=0;
+  private int y=0;
+  
+  
+}

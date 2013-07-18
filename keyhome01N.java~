@@ -1,0 +1,21 @@
+class keyhome01N extends key{
+  
+  public String use(room thisRoom){
+    String useMessage;
+    if(thisRoom.getRoomName().equals("House")){
+      if(thisRoom.getNorth()==false){
+        useMessage="You use your house key to open the door. Why you need the key to unlock it from the inside you still don't understand.";
+      }
+      else{
+        useMessage="You lock the door with yourself still in the apartment. A familiar problem arises.";
+      }
+      thisRoom.setNorth(!thisRoom.getNorth());
+      return useMessage;
+    }
+      else{
+        useMessage="These are not the locks you're looking for.";
+    return useMessage;
+      }
+  }
+  
+}

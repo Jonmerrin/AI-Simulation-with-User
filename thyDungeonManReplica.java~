@@ -1,0 +1,7 @@
+import java.util.*;
+
+class thyDungeonManReplica{
+  
+  private int xLocation;
+  private int yLocation;
+  public boolean gameOver=false;

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=a\ g
+comment0.target=Viewer(World,\ User)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Viewer\n
+comment1.params=input
+comment1.target=void\ command(java.lang.String)
+comment1.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\ \n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \n
+comment2.params=input\ input2
+comment2.target=void\ command(java.lang.String,\ java.lang.String)
+numComments=3

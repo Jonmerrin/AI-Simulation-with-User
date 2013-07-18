@@ -1,0 +1,32 @@
+class itemTemplate{
+  public String itemDesc;
+  public String itemName;
+  public int uses;
+  
+  public void itemTemplate(){
+  }
+  
+  public String getName(){
+    return(itemName);
+  }
+  
+  public String getDesc(){
+    return(itemDesc);
+  }
+  
+  public int checkStats(){
+    return(uses);
+  }
+  
+  public void setName(String name){
+    itemName=name;
+  }
+  
+  public void setDesc(String desc){
+    itemDesc=desc;
+  }
+  
+  public void setUses(int x){
+    uses=x;
+  }
+}

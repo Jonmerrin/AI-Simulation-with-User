@@ -1,0 +1,11 @@
+class padOfPaper extends item{
+  
+  
+  public String draw(String drawing){
+    String drawingMessage = "";
+    if(drawing=="sword"){
+      drawingMessage="You draw a sword";
+    }
+    return drawingMessage;
+  }
+}

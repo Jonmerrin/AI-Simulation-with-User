@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=NamesBoys()
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ Names\n
+comment1.params=
+comment1.target=java.lang.String\ assignName()
+comment1.text=\n\ Picks\ a\ random\ name,\ returns\ it,\ and\ takes\ it\ off\ the\ list\ of\ names\ to\ ensure\ that\ there\ are\ no\ repeats.\n
+comment2.params=newName
+comment2.target=void\ add(java.lang.String)
+numComments=3

@@ -1,0 +1,6 @@
+class key extends item{
+  
+  public String use(room thisRoom){
+    return("You can't use that here.");
+  }
+}

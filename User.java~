@@ -192,10 +192,6 @@ public class User extends Mover
             mode = false;
             System.out.println(theWorld);
         }
-        else if(input.equals("help")){
-          System.out.println("Current Mode: User\n\nCommands:");
-          System.out.println("go [direction]               Moves your character in a direction.\nstay                         Keeps your character in place while all others move.\nmap                          Shows the grid, and every AI's respective location on it.\nroom                         Gives the coordinates of your current location on the grid.\nviewer                       Switches from user to Viewer mode.\nviewer mode                  Switches from user to viewer mode.");
-        }
         else if(input.equals("map")){
             System.out.println(theWorld);
         }

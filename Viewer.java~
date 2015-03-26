@@ -51,12 +51,6 @@ public class Viewer
         if(input.equals("map")){
             System.out.println(theWorld);
         }
-        
-        if(input.equals("help")){
-          System.out.println("Current Mode: Viewer\n\nCommands:");
-          System.out.println("add                          Adds another AI character.\nattendance                   Shows the full names of all the characters currently on the grid.\nmap                          Shows the grid, and every AI's respective location on it.\nnum                          Shows how many characters there are currently on the grid.\nremove x                     Removes designated character 'x'  from the simulation.\nroom num                     Returns the number of characters present in each room on the grid.\nuser                         Switches from viewer to user mode.\nuser mode                    Switches from viewer to user mode.");
-          System.out.println("view inv x                   Allows you to see x's inventory.\n     profile x               Shows all of character x's statistics.\n     relationships x         Shows all of designated character 'x's relationships.\n     story x y               Shows the full history of two characters, x and y, from the perspective of x.");
-        }
         // I used "move" before I got the "hit enter to continue" option working. 
         //I'm still not sure which I like better, so I didn't delete this one yet.
 

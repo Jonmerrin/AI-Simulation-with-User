@@ -45,7 +45,6 @@ class AI{
             System.exit(1);
         }
         try{
-            System.out.println("Hit ENTER to continue.");
             br.readLine();
         }
         catch(IOException ioe){
@@ -74,8 +73,8 @@ class AI{
 
             //Makes sure the input is readable
             String input = null;
-            //String input2 = null;
-            //String miscString = null;
+            String input2 = null;
+            String miscString = null;
             try{
                 input=br.readLine();
 
